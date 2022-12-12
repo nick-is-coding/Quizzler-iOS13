@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     ]
     
     var questionNumber = 0
+    var questionTotal = 12
+    
     
     override func viewDidLoad() {
             super.viewDidLoad()
@@ -43,6 +45,8 @@ class ViewController: UIViewController {
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnswer = sender.currentTitle // True, False
         let actualAnswer = quiz[questionNumber].answer
+        
+        progressBar.progress = 0.0
         
         if userAnswer == actualAnswer {
                 sender.backgroundColor = UIColor.green
@@ -63,8 +67,9 @@ class ViewController: UIViewController {
     
     @objc func updateUI() {
             questionLabel.text = quiz[questionNumber].text
-                trueButton.backgroundColor = UIColor.clear
-                falseButton.backgroundColor = UIColor.clear
+            trueButton.backgroundColor = UIColor.clear
+            falseButton.backgroundColor = UIColor.clear
+            progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
         }
     
 }
